@@ -1,0 +1,1 @@
+helm upgrade elasticsearch elastic/elasticsearch --namespace elastic --set imageTag=8.12.2 --set replicas=1 --set minimumMasterNodes=1 --set ingress.enabled=true --set esJavaOpts="-Xms256m -Xmx1024m
