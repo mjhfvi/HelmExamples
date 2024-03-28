@@ -1,0 +1,21 @@
+# If you are absolutely sure that you want to ignore the above files from talisman detectors,
+# consider pasting the following format in .talismanrc file in the project root
+---
+fileignoreconfig:
+- filename: nginx/helm/templates-for-helm/helm-template-nginx-pod.yaml
+  checksum: b86bf2b25ed4434947236e87fc1c541c6e8f6f72c426ce0eb55220b0c1eb59db
+- filename: .yamllint.yaml
+  checksum: 268cb8045ae68ca3560f8feb149bfbfde96aaed8b38853e305d6de5d0221ab93
+- filename: nginx/helm/helm-template-nginx-deployment.yaml
+  checksum: 927983d2a062e769c89f22a20f2f9dc5ec0533d1292e9863558dd714f2f82969
+- filename: nginx/helm/helm-template-nginx-secret.yaml
+  checksum: af1b58c1dac271b457d45e582f8bd9ac71fd7d9f4605b25dc6cfc3d6c96a84d3
+- filename: nginx/helm/helm-template-nginx-pod.yaml
+  checksum: a09e16fed2da0e17e59d1a046048825eb65deddba24faac3f5df2ae83b68f2db
+- filename: nginx/helm/helm-template-nginx-replicaset.yaml
+  checksum: a63275d799bf96b85c708b765c29b6326174ee6623a89908b71038f35b635063
+- filename: nginx/helm/templates-for-helm/helm-template-nginx-deployment.yaml
+  checksum: a2976f64ab8ae409c9ef5767a9fc219639a86d3ad14efbda2abd639537184429
+- filename: nginx/helm/templates-for-helm/helm-template-nginx-replicaset.yaml
+  checksum: b2fb95811b3e1ebda14f47f5ce0f7370c80bee8509de0809f98ba00b324876c5
+version: ""

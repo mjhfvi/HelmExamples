@@ -45,7 +45,7 @@ repos:
       - id: setup-cfg-fmt
         name: setup-cfg-fmt (apply a consistent format to setup.cfg files)
   - repo: https://github.com/crate-ci/typos
-    rev: v1.18.2
+    rev: v1.19.0
     hooks:
       - id: typos
   # - id: typos-docker
@@ -70,7 +70,7 @@ repos:
         args: [--py39-plus, --add-import, from __future__ import annotations]
         exclude: ^(pre_commit/resources/|testing/resources/python3_hooks_repo/)
   - repo: https://github.com/hhatto/autopep8
-    rev: v2.0.4
+    rev: v2.1.0
     hooks:
       - id: autopep8
         name: autopep8 (Style Guide Enforcement)
@@ -116,7 +116,7 @@ repos:
 #     name: ggshield (CI environment to detect secrets)
 #     always_run: true
   - repo: https://github.com/norwoodj/helm-docs
-    rev: v1.13.0
+    rev: v1.13.1
     hooks:
       - id: helm-docs
         name: helm-docs (auto-generates documentation from helm charts into markdown
