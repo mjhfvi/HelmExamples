@@ -18,4 +18,11 @@ fileignoreconfig:
   checksum: a2976f64ab8ae409c9ef5767a9fc219639a86d3ad14efbda2abd639537184429
 - filename: nginx/helm/templates-for-helm/helm-template-nginx-replicaset.yaml
   checksum: b2fb95811b3e1ebda14f47f5ce0f7370c80bee8509de0809f98ba00b324876c5
+
+- filename: clalit/postgresql.txt
+  checksum: ee847213095e69447007d2636f42c460aa01ee93e3b2f2f91f4cabd1bcc58ea3
+- filename: clalit/nginx-configmap-config.yml
+  checksum: 771f7f5a0f0859dda2c732f8484fa2a7740b40022377a2863f241ac479286ebc
+- filename: clalit/postgres-secrets.yml
+  checksum: 5c222fbf2feda5989948843452e5e632a2cd4a280795ab3a495078b833fd0bfa
 version: ""
