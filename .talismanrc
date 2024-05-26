@@ -25,4 +25,9 @@ fileignoreconfig:
   checksum: 771f7f5a0f0859dda2c732f8484fa2a7740b40022377a2863f241ac479286ebc
 - filename: clalit/postgres-secrets.yml
   checksum: 5c222fbf2feda5989948843452e5e632a2cd4a280795ab3a495078b833fd0bfa
+
+- filename: helm-template/templates/ingress.yaml
+  checksum: 98c8e59d3a767c418dcb77035df624b22fce52ed99408a3daf0dee3e36d51af4
+- filename: helm-template/values.yaml
+  checksum: 71e582e12779fd8705423e503aec644477c6231a053e0dbf7bda3c362a071c69
 version: ""

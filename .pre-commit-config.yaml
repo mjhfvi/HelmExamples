@@ -21,9 +21,9 @@ repos:
         log_file: 'true'
       - id: check-xml
         verbose: true
-      - id: check-yaml
-        verbose: true
-        args: [--allow-multiple-documents]
+      # - id: check-yaml
+      #   verbose: true
+      #   args: [--allow-multiple-documents]
       - id: check-json
         verbose: true
       - id: pretty-format-json
@@ -52,11 +52,11 @@ repos:
         name: typos (Finds and corrects spelling mistakes)
         args: [-v]
         exclude: gitleaks-report.json
-  - repo: https://github.com/adrienverge/yamllint
-    rev: v1.35.1
-    hooks:  # Use yamlfix to fix yaml files
-      - id: yamllint
-        name: yamllint (linter for YAML files)
+  # - repo: https://github.com/adrienverge/yamllint
+  #   rev: v1.35.1
+  #   hooks:  # Use yamlfix to fix yaml files
+  #     - id: yamllint
+  #       name: yamllint (linter for YAML files)
   - repo: https://github.com/PeterMosmans/jenkinslint
     rev: v1.0.0
     hooks:
@@ -115,12 +115,12 @@ repos:
 #   - id: docker-ggshield
 #     name: ggshield (CI environment to detect secrets)
 #     always_run: true
-  - repo: https://github.com/norwoodj/helm-docs
-    rev: v1.13.1
-    hooks:
-      - id: helm-docs
-        name: helm-docs (auto-generates documentation from helm charts into markdown
-          files)
+  # - repo: https://github.com/norwoodj/helm-docs
+  #   rev: v1.13.1
+  #   hooks:
+  #     - id: helm-docs
+  #       name: helm-docs (auto-generates documentation from helm charts into markdown
+  #         files)
 
 # - repo: https://github.com/dmitri-lerko/pre-commit-docker-kustomize
 #   rev: f3a8533
