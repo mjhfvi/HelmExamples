@@ -1,0 +1,47 @@
+---
+#  Source: https://artifacthub.io/packages/helm/argo/argo-cd
+
+#   What is a helmfile? Read here... https://github.com/helmfile/helmfile
+#   Examples: https://github.com/helmfile/helmfile/blob/main/examples/charts/argocd-helmfile-deployment/helmfile.yaml
+
+# Before deployment, export the required env vars
+# export HELM_SECRETS_DRIVER=vault
+
+# Commands to deploy:
+# helmfile deps  # < download dependencies
+# helmfile template  # < template stuff. You might have to be signed into vault
+# helmfile sync  # < deploy everything
+# helmfile apply  # < deploy diff only
+# helmfile destroy  # < deploy diff only
+filepath: helmfile.yaml
+helmBinary: helm
+# kustomizeBinary: kustomize
+helmDefaults:
+  # verify: false
+  # enableDNS: false
+  # waitForJobs: false
+  timeout: 60
+  # skipDeps: false
+  # reuseValues: false
+  # deleteWait: false
+  # deleteTimeout: 0
+# repositories:
+#   - name: flaskwebapp
+#     url: https://chhetrinabin.github.io/flaskapp
+releases:
+  - name: python
+    installed: true
+    # namespace: "{{`{{ .Release.Name }}`}}"
+    # createNamespace: true
+    chart: charts/python
+    labels:
+      app.kubernetes.io/name: python
+  #   version: 7.0.0
+  #   missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
+  #   verify: true
+    cleanupOnFail: true
+    # force: false
+    values:
+      # - "charts/python/python-environment-variables.yaml"
+      - charts/python/values-python.yaml
+# kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000

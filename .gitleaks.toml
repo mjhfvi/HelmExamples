@@ -1,0 +1,5 @@
+title = "gitleaks config"
+
+[[rules]]
+description = "Generic Secret"
+regex = '''(?i)(secret|password|api_key|apikey|access_token|auth_token)'''
