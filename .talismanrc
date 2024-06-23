@@ -734,4 +734,12 @@ fileignoreconfig:
   checksum: 34210f67f3505523ff886acf65b36d3e605df3e7983971c9e196ba87d864f840
 - filename: charts/nginx/templates/deployment.yaml
   checksum: 3be7ba838451e940636be1f86a7377ace240d4166fb9844c798bd67d73c7a697
+- filename: helmfile/helmfile-postgresql.yaml
+  checksum: 4360669fc214fe3a35ae35a85e1ef766f4ee4cc3284485bede790367c500d5e4
+- filename: helmfile/helmfile-jenkins.yaml
+  checksum: e0421612b668b13f4c774608e02d55abb548d2eace8d56eb6958414e250aec18
+- filename: helmfile/jcasc-custom-config.yaml
+  checksum: 6c3143f77b892bf2b4f26443e0cf2c6f4e93d0d089bd8a7fd907b93a86b704bf
+- filename: .gitleaks.toml
+  checksum: 877499965e8a9209b7643b669fd6b835cc95fd5e3ad599aa6e53c09d036a8dbd
 version: ""

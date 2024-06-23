@@ -44,4 +44,4 @@ releases:
   #   cleanupOnFail: true
     values:
       # - "charts/{{`{{ .Release.Name }}`}}/values.yaml"
-      - charts/{{`{{ .Release.Name }}`}}/values-{{`{{ .Release.Name }}`}}.yaml
+      - ../charts/{{`{{ .Release.Name }}`}}/values-{{`{{ .Release.Name }}`}}.yaml

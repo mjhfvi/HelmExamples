@@ -142,21 +142,21 @@ repos:
           - KeywordDetector
         exclude: gitleaks-report.json|charts/|helm-template-example/
 
-  # - repo: https://github.com/zricethezav/gitleaks
-  #   rev: v8.18.4
-  #   hooks:
-  #     - id: gitleaks
-  #       name: gitleaks
-  #       description: Gitleaks is for detecting and preventing hardcoded secrets
-  #       args: [--no-banner, --config=.gitleaks.toml]
-  #     - id: gitleaks-docker
-  #       name: gitleaks-docker
-  #       description: Detect hardcoded system docker secrets using Gitleaks
-  #       args: [--no-banner, --config=.gitleaks.toml]
-  #     - id: gitleaks-system
-  #       name: Detect hardcoded secrets
-  #       description: Detect hardcoded system secrets using Gitleaks
-  #       args: [--no-banner, --config=.gitleaks.toml]
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks
+        name: gitleaks
+        description: Gitleaks is for detecting and preventing hardcoded secrets
+        args: [--no-banner, --config=.gitleaks.toml]
+      - id: gitleaks-docker
+        name: gitleaks-docker
+        description: Detect hardcoded system docker secrets using Gitleaks
+        args: [--no-banner, --config=.gitleaks.toml]
+      - id: gitleaks-system
+        name: Detect hardcoded secrets
+        description: Detect hardcoded system secrets using Gitleaks
+        args: [--no-banner, --config=.gitleaks.toml]
 
   - repo: https://github.com/thoughtworks/talisman
     rev: v1.32.0
@@ -182,14 +182,14 @@ repos:
         name: helm-docs (auto-generates documentation from helm charts into markdown)
         exclude: charts/|helm-template-example/
 
-  # - repo: https://github.com/jumanjihouse/pre-commit-hooks
-  #   rev: 3.0.0
-  #   hooks:
-  #     - id: shfmt
-  #       args: ['-l', '-i', '2', '-ci', '-sr', '-w']
-  #       verbose: true
-  #     - id: shellcheck
-  #       verbose: true
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: shfmt
+        args: ['-l', '-i', '2', '-ci', '-sr', '-w']
+        verbose: true
+      - id: shellcheck
+        verbose: true
 
   - repo: https://github.com/hadolint/hadolint
     rev: v2.13.0-beta

@@ -43,7 +43,7 @@ releases:
   #   cleanupOnFail: true
     values:
       # - "charts/{{`{{ .Release.Name }}`}}/values.yaml"
-      - charts/{{`{{ .Release.Name }}`}}/values-kubernetes-dashboard.yaml
+      - ../charts/{{`{{ .Release.Name }}`}}/values-kubernetes-dashboard.yaml
       # - service:
       #     type: "LoadBalancer"
       #     externalPort: "8081"

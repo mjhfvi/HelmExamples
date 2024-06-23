@@ -42,5 +42,5 @@ releases:
     cleanupOnFail: true
     values:
       # - "charts/{{`{{ .Release.Name }}`}}/values.yaml"
-      - charts/{{`{{ .Release.Name }}`}}/values-{{`{{ .Release.Name }}`}}.yaml
+      - ../charts/{{`{{ .Release.Name }}`}}/values-{{`{{ .Release.Name }}`}}.yaml
 # kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
