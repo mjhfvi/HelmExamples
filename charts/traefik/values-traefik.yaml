@@ -117,7 +117,7 @@ podDisruptionBudget:
 # -- Create a default IngressClass for Traefik
 ingressClass:
   enabled: true
-  isDefaultClass: true
+  isDefaultClass: true   # true
   # name: my-custom-class
 
 core:

@@ -18,7 +18,11 @@ kind: Ingress
 metadata:
   name: traefik-ingress
   # namespace: traefik
+  annotations:
+    kubernetes.io/ingress.class: traefik  # traefik, nginx
+    # nginx.ingress.kubernetes.io/rewrite-target: "http://traefik.localhost/dashboard/#/"
 spec:
+  ingressClassName: traefik   # traefik, nginx
   rules:
     - host: traefik.localhost
       http:
@@ -30,4 +34,3 @@ spec:
                 name: traefik-service
                 port:
                   number: 9000
-  ingressClassName: nginx

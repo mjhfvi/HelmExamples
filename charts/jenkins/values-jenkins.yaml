@@ -394,6 +394,7 @@ controller:
   # -- List of Jenkins plugins to install. If you don't want to install plugins, set it to `false`
   installPlugins:
     # - asm-api
+    - audit-log
     # - uno-choice
     # - additional-metrics
     # - slave-setup
@@ -488,7 +489,7 @@ controller:
     # - htmlpublisher
     - http_request
     # - handy-uri-templates-2-api
-    # - cloudbees-jenkins-advisor
+    - cloudbees-jenkins-advisor
     - hidden-parameter
     # - instance-identity
     # - ionicons-api
@@ -507,11 +508,13 @@ controller:
     # - javax-mail-api
     # - javadoc
     # - jersey2-api
+    - jobConfigHistory
     # - joda-time-api
-    # - kubernetes-cli
+    - kubernetes-cli
     # - kubernetes-client-api
     # - kubernetes-credentials
-    # - kubernetes-credentials-provider
+    - kubernetes-credentials-provider
+    - kubernetes-pipeline-devops-steps
     - kubernetes
     # - ldap
     # - log-cli

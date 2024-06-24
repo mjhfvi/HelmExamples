@@ -1,0 +1,25 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`traefik.localhost`) && PathPrefix(`/`) || (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      kind: Rule
+      services:
+        - name: traefik
+          port: TraefikService
+
+# ---
+# # Redirect with domain replacement
+# apiVersion: traefik.io/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: traefik-redirectregex
+# spec:
+#   redirectRegex:
+#     regex: ^http://traefik.localhost/(.*)
+#     replacement: http://traefik.localhost/${1}
