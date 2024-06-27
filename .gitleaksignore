@@ -1,2 +1,1 @@
-charts
-helm-template-example
+charts/nginx/values-nginx.yaml:private-key:800

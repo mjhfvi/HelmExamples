@@ -34,13 +34,16 @@ releases:
     # namespace: "{{`{{ .Release.Name }}`}}"
     # createNamespace: true
     chart: traefik/{{`{{ .Release.Name }}`}}
-    labels:
-      app.kubernetes.io/name: traefik
+    # labels:
+    #   app.kubernetes.io/name: traefik
   #   version: 7.0.0
   #   missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
   #   verify: true
     cleanupOnFail: true
     values:
       # - "charts/{{`{{ .Release.Name }}`}}/values.yaml"
-      - ../charts/{{`{{ .Release.Name }}`}}/values-{{`{{ .Release.Name }}`}}.yaml
+      - ../charts/{{`{{ .Release.Name }}`}}-proxy/values-{{`{{ .Release.Name }}`}}.yaml
+
 # kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
+## add traefik crd definition for kubernetes
+# kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v3.0/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
