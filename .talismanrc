@@ -1,17 +1,8 @@
-# If you are absolutely sure that you want to ignore the above files from talisman detectors,
-# consider pasting the following format in .talismanrc file in the project root
----
 fileignoreconfig:
-- filename: charts/traefik-mesh/Guidelines.md
-  checksum: f127d747f57a16f5f4a466bf1af432920b5ff27e37ef25d7eb3049ab3df6eae2
-- filename: charts/traefik-mesh/templates/coredns/coredns-deployment.yaml
-  checksum: c21717933114ee9791b161040b09984c4c25a41c3c233b650c44cd2dd37f0a81
-- filename: charts/traefik-mesh/charts/metrics/templates/grafana.yaml
-  checksum: 023f04396d43cec6ffd780e87426053669baa314db483a7e22bb758e68c7e911
-- filename: charts/traefik-mesh/values.yaml
-  checksum: fe835bc39356ec368c0f45b50a0456c974cb78bf8f8c3ee275cb837348a114a4
-- filename: charts/traefik-mesh/templates/proxy/proxy-daemonset.yaml
-  checksum: dc8b6684fa7c3ba3d956c52101d3977154712dbb4070399886d055554a237b4d
-- filename: charts/nginx/values-nginx.yaml
-  checksum: dd928244491a4dc3b6d2812e9834ada1e2b898c763472951b1cfcd9b9689dd36
+- filename: charts/python/python-environment-variables.yaml
+  checksum: c602604555421fb58e4ae650f7dce658b7bf59af5fae18ec8c60a11a6630e22b
+- filename: chartsValues/python-environment-variables.yaml
+  checksum: d2192dd48ada079dfce45e0561ffd40a21e5849db3e7eae4f80c18d448488bb8
+- filename: helmfile/helmfile-postgresql.yaml
+  checksum: 5e4da33f4364546ebc9c09959405893568fdfd98c6a359000bbf94a3d137585f
 version: ""

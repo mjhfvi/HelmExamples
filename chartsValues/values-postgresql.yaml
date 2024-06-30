@@ -159,9 +159,9 @@ auth:
   ## @param auth.secretKeys.replicationPasswordKey Name of key in existing secret to use for PostgreSQL credentials. Only used when `auth.existingSecret` is set.
   ##
   secretKeys:
-    adminPasswordKey: postgres-password
-    userPasswordKey: password
-    replicationPasswordKey: replication-password
+    adminPasswordKey: postgres-password   # pragma: allowlist secret
+    userPasswordKey: password             # pragma: allowlist secret
+    replicationPasswordKey: replication-password    # pragma: allowlist secret
   ## @param auth.usePasswordFiles Mount credentials as a files instead of using an environment variable
   ##
   usePasswordFiles: false
@@ -347,7 +347,7 @@ primary:
       create_database.sql: |
         \connect flaskappdb
         CREATE SCHEMA IF NOT EXISTS flaskapp AUTHORIZATION flaskappuser;
-        ALTER DATABASE flaskappdb SET search_path TO flaskappdb;
+        ALTER DATABASE flaskappdb SET search_path TO flaskapp;
 
         SET schema 'flaskapp';
 

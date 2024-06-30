@@ -1,3 +1,4 @@
+---
 # apiVersion: v1
 # kind: Namespace
 # metadata:
@@ -31,8 +32,8 @@ metadata:
   namespace: kubernetes-dashboard
 spec:
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
   selector:
     app: kubernetes-dashboard
 ---
@@ -45,13 +46,13 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   rules:
-  - host: dashboard.test.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kubernetes-dashboard
-            port:
-              number: 80
+    - host: dashboard.test.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kubernetes-dashboard
+                port:
+                  number: 80

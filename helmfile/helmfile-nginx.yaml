@@ -42,12 +42,12 @@ releases:
     # timeout: 60
     cleanupOnFail: true
     values:
-      - ../charts/{{`{{ .Release.Name }}`}}/values-{{`{{ .Release.Name }}`}}.yaml
+      - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
       - service:
           type: ClusterIP  # LoadBalancer, ClusterIP
           ports:
             http: 8082
             https: 8443
       - ../service/nginx-ingress.yaml
-      - ../charts/nginx/nginx-configmap-config.yaml
+      - ../chartsValues/nginx/nginx-configmap-config.yaml
       - existingServerBlockConfigmap: nginx-server-block

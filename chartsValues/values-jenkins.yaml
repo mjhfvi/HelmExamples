@@ -1,3 +1,4 @@
+---
 # Default values for jenkins.
 # This is a YAML-formatted file.
 # Declare name/value pairs to be passed into your templates.
@@ -78,12 +79,12 @@ controller:
     username: "admin"
     # -- Admin password created as a secret if `controller.admin.createSecret` is true
     # @default -- <random password>
-    password: "1a2b3c4d"
+    password: ""
 
     # -- The key in the existing admin secret containing the username
     userKey: jenkins-admin-user
     # -- The key in the existing admin secret containing the password
-    passwordKey: jenkins-admin-password
+    passwordKey: jenkins-admin-password   # pragma: allowlist secret
 
     # The default configuration uses this secret to configure an admin user
     # If you don't need that user or use a different security realm, then you can disable it
@@ -328,7 +329,7 @@ controller:
   agentListenerExternalTrafficPolicy:
   # -- Allowed inbound IP for the agentListener service
   agentListenerLoadBalancerSourceRanges:
-  - 0.0.0.0/0
+    - 0.0.0.0/0
   # -- Disabled agent protocols
   disabledAgentProtocols:
     - JNLP-connect
@@ -370,7 +371,7 @@ controller:
   # set allowed inbound rules on the security group assigned to the controller load balancer
   # -- Allowed inbound IP addresses
   loadBalancerSourceRanges:
-  - 0.0.0.0/0
+    - 0.0.0.0/0
 
   # -- Optionally assign a known public LB IP
   loadBalancerIP:
@@ -737,7 +738,7 @@ controller:
     #  welcome-message: |
     #    jenkins:
     #      systemMessage: Welcome to our CI\CD server. This Jenkins is configured and managed 'as code'.
-        jcasc-custom-config-jenkins: |
+      jcasc-custom-config-jenkins: |
           jenkins:
             systemMessage: "Welcome Back, Have A Nice Day!!"
             globalNodeProperties:
@@ -751,7 +752,7 @@ controller:
                 - key: "PATH+EXTRA"
                   value: "/home/tzahi/.local/bin/"
 
-        jcasc-custom-config-credentials: |
+      jcasc-custom-config-credentials: |    # pragma: allowlist secret
           credentials:
             system:
               domainCredentials:
@@ -761,14 +762,14 @@ controller:
                     id: "GitHub-SSH-Access-Credentials-to-JobAssignment-Git"
                     privateKeySource:
                       directEntry:
-                        privateKey: "{AQAAABAAAAHQESLpZaiBeEWf3swIzKx7RtkYwUjPEwp198r45cMXKSMxJ7geOZndbQjtqKoUVYxDLvUKm041vaxB2m9TBReeRubQdea8gpmHRs0o78xvwdiUG4YNQZ4HgME33hfMisWhs6MUNhJhy9mVmeg4ETBpCnzg/PP58byBo1wDNs9lcK+5np62l+ipJJ0/6AYllgpqJIS0JoHPUNPEqViTcPeIXVET8rbU6hickfFxJs+DyEOcjeEyqJ1LAGUqE3hVg+xvsNMykrQjhY8wGbRkGWybyLQ252wech2X0e0IRF33ubXJnESeinwPHSKUb1jPa+KY+wvuSDSTgdvQBy+/HYXMwdApgDlyzMLVd1KqZ/H8ECgNBi68GgChBYKoSWyrmrLuXvZAM5N6rvYNHc1E5Q8HakQwv12H8vmZYf/Hta/cH6NSYOmXFUlF/8hjSVwLf8hhzPALBJkeePKBWrJ0ulkVMyJ1IIWaXmvjwAWPCEHtd6g30wYtGcGtNeHz5iiAOApYjO9qDwrUUqzdjiUQNHiKbkhdGmNTlAioqwTl9Kg7hMlbHrB1uqs6Jydkge+fE/E+nXLdp6S0HBM5egS/E9S0UXbgo5j4cFO1xRhgjKjcT8/7OPJeLxVuq/NVvLYAx6XE}"
+                        privateKey: "{}"
                     scope: GLOBAL
                     username: "mjhfvi@gmail.com"
                     usernameSecret: true
                 - usernamePassword:
                     description: "Docker Hub Login Credentials"
                     id: "Docker-Hub-Login-Credentials"
-                    password: "{AQAAABAAAAAQR9CsRFnIVa8hPCrk6AYRNqivLV2P4/iDFo2w1FxslWw=}"
+                    password: "{}"
                     scope: GLOBAL
                     username: "mjhfvi"
                     usernameSecret: true
@@ -776,14 +777,14 @@ controller:
                     description: "Private Aws Access Key"
                     id: "Aws-Access-Key"
                     scope: GLOBAL
-                    secret: "{AQAAABAAAAAgKgpwmEl9yyLuryq/bLViCu5kH+0s+FFfkuv4itk2BbdjPbDlUpXPktZucgy10Vls}"
+                    secret: "{}"
                 - string:
                     description: "Private Aws Secret Key"
                     id: "Aws-Secret-Key"
                     scope: GLOBAL
-                    secret: "{AQAAABAAAAAwS1rWscaj9oy4XjFrsivO7hDDUoxVpGzQfjqVk/CR3kd8nvfOPRsUEyg/Rs9SRGU307Ri5hOvMGHboxUZhvY1EA==}"
+                    secret: "{}"
 
-        jcasc-custom-config-tools: |
+      jcasc-custom-config-tools: |
           tool:
             customTool:
               installations:
@@ -844,7 +845,7 @@ controller:
                         label: "linux"
                         toolHome: "/home/tzahi/.local/bin/"
 
-        jcasc-custom-config-appearance: |
+      jcasc-custom-config-appearance: |
           appearance:
             pipelineGraphView:
               showGraphOnBuildPage: false
@@ -855,7 +856,7 @@ controller:
               disableUserThemes: false
               theme: "dark"
 
-        jcasc-custom-config-unclassified: |
+      jcasc-custom-config-unclassified: |
           unclassified:
             ansiColorBuildWrapper:
               colorMaps:
@@ -1256,11 +1257,11 @@ controller:
     # -- Name of the secret that already has ssl keystore
     jenkinsHttpsJksSecretName: ""
     # -- Name of the key in the secret that already has ssl keystore
-    jenkinsHttpsJksSecretKey: "jenkins-jks-file"
+    jenkinsHttpsJksSecretKey: "jenkins-jks-file"    # pragma: allowlist secret
     # -- Name of the secret that contains the JKS password, if it is not in the same secret as the JKS file
     jenkinsHttpsJksPasswordSecretName: ""
     # -- Name of the key in the secret that contains the JKS password
-    jenkinsHttpsJksPasswordSecretKey: "https-jks-password"
+    jenkinsHttpsJksPasswordSecretKey: "https-jks-password"    # pragma: allowlist secret
     disableSecretMount: false
 
     # When HTTPS keystore is enabled, servicePort and targetPort will be used as HTTPS port
@@ -1271,7 +1272,7 @@ controller:
     # -- Jenkins keystore filename which will appear under controller.httpsKeyStore.path
     fileName: "keystore.jks"
     # -- Jenkins keystore password
-    password: "password"
+    password: "password"    # pragma: allowlist secret
 
     # -- Base64 encoded Keystore content. Keystore must be converted to base64 then being pasted here
     jenkinsKeyStoreBase64Encoded:

@@ -43,7 +43,7 @@ releases:
   #   cleanupOnFail: true
     values:
       # - "charts/{{`{{ .Release.Name }}`}}/values.yaml"
-      - ../charts/{{`{{ .Release.Name }}`}}/values-{{`{{ .Release.Name }}`}}.yaml
+      - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
       - global:
           postgresql:
             auth:

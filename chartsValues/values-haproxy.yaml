@@ -1,3 +1,4 @@
+---
 # Copyright 2020 HAProxy Technologies LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -273,7 +274,7 @@ mountedSecrets: []
 ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
 nodeSelector: {}
 
-## Node Taints and Tolerations for pod-node cheduling through attraction/repelling
+## Node Taints and Tolerations for pod-node scheduling through attraction/repelling
 ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 tolerations: []
 #  - key: "key"

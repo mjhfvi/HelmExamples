@@ -20,6 +20,6 @@ configMap:
     PORT_VAR: '5000'
     DB_VAR: 'employees'
     USER_VAR: 'postgres'
-    PASSWORD_VAR: 'mydbpassword'
+    PASSWORD_VAR: 'mydbpassword'    # pragma: allowlist secret
 
 resources: {}

@@ -34,7 +34,7 @@ crds:
   keep: true
   # -- Annotations to be added to all CRDs
   annotations: {}
-  # -- Addtional labels to be added to all CRDs
+  # -- Additional labels to be added to all CRDs
   additionalLabels: {}
 ## Globally shared configuration
 global:
@@ -831,7 +831,7 @@ controller:
       # -- Prometheus ServiceMonitor tlsConfig
       tlsConfig: {}
       # -- Prometheus ServiceMonitor namespace
-      namespace: '' # "monitoring"
+      namespace: ''   # "monitoring"
       # -- Prometheus ServiceMonitor labels
       additionalLabels: {}
       # -- Prometheus ServiceMonitor annotations
@@ -840,7 +840,7 @@ controller:
       # -- Deploy a PrometheusRule for the application controller
       enabled: false
       # -- PrometheusRule namespace
-      namespace: '' # "monitoring"
+      namespace: ''   # "monitoring"
       # -- PrometheusRule selector
       selector: {}
         # prometheus: kube-prometheus
@@ -921,7 +921,7 @@ dex:
       # -- Prometheus ServiceMonitor tlsConfig
       tlsConfig: {}
       # -- Prometheus ServiceMonitor namespace
-      namespace: '' # "monitoring"
+      namespace: ''   # "monitoring"
       # -- Prometheus ServiceMonitor labels
       additionalLabels: {}
       # -- Prometheus ServiceMonitor annotations
@@ -939,7 +939,7 @@ dex:
     # -- Number of pods that are available after eviction as number or percentage (eg.: 50%)
     # @default -- `""` (defaults to 0 if not specified)
     minAvailable: ''
-    # -- Number of pods that are unavailble after eviction as number or percentage (eg.: 50%).
+    # -- Number of pods that are unavailable after eviction as number or percentage (eg.: 50%).
     ## Has higher precedence over `dex.pdb.minAvailable`
     maxUnavailable: ''
 
@@ -1196,7 +1196,7 @@ redis:
     # -- Number of pods that are available after eviction as number or percentage (eg.: 50%)
     # @default -- `""` (defaults to 0 if not specified)
     minAvailable: ''
-    # -- Number of pods that are unavailble after eviction as number or percentage (eg.: 50%).
+    # -- Number of pods that are unavailable after eviction as number or percentage (eg.: 50%).
     ## Has higher precedence over `redis.pdb.minAvailable`
     maxUnavailable: ''
 
@@ -1469,7 +1469,7 @@ redis:
       # -- Prometheus ServiceMonitor tlsConfig
       tlsConfig: {}
       # -- Prometheus ServiceMonitor namespace
-      namespace: '' # "monitoring"
+      namespace: ''   # "monitoring"
       # -- Prometheus ServiceMonitor labels
       additionalLabels: {}
       # -- Prometheus ServiceMonitor annotations
@@ -1534,7 +1534,7 @@ redis-ha:
   auth: true
   # -- Existing Secret to use for redis-ha authentication.
   # By default the redis-secret-init Job is generating this Secret.
-  existingSecret: argocd-redis
+  existingSecret: argocd-redis    # pragma: allowlist secret
 
   # -- Whether the Redis server pods should be forced to run on separate nodes.
   hardAntiAffinity: true
@@ -1958,7 +1958,7 @@ server:
     # -- Deploy a Certificate resource (requires cert-manager)
     enabled: false
     # -- The name of the Secret that will be automatically created and managed by this Certificate resource
-    secretName: argocd-server-tls
+    secretName: argocd-server-tls   # pragma: allowlist secret
     # -- Certificate primary domain (commonName)
     # @default -- `""` (defaults to global.domain)
     domain: ''
@@ -2653,7 +2653,7 @@ repoServer:
       # -- Prometheus ServiceMonitor tlsConfig
       tlsConfig: {}
       # -- Prometheus ServiceMonitor namespace
-      namespace: '' # "monitoring"
+      namespace: ''   # "monitoring"
       # -- Prometheus ServiceMonitor labels
       additionalLabels: {}
       # -- Prometheus ServiceMonitor annotations
@@ -2677,7 +2677,7 @@ repoServer:
     # -- Create repo server service account
     create: true
     # -- Repo server service account name
-    name: '' # "argocd-repo-server"
+    name: ''  # "argocd-repo-server"
     # -- Annotations applied to created service account
     annotations: {}
     # -- Labels applied to created service account
@@ -2956,7 +2956,7 @@ applicationSet:
     # -- Deploy a Certificate resource (requires cert-manager)
     enabled: false
     # -- The name of the Secret that will be automatically created and managed by this Certificate resource
-    secretName: argocd-applicationset-controller-tls
+    secretName: argocd-applicationset-controller-tls    # pragma: allowlist secret
     # -- Certificate primary domain (commonName)
     # @default -- `""` (defaults to global.domain)
     domain: ''

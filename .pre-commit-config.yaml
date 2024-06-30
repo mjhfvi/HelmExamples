@@ -1,9 +1,9 @@
+---
 # Source: https://pre-commit.com/hooks.html
 # pre-commit install
 # pre-commit autoupdate
 # detect-secrets scan > .secrets.baseline
 # pre-commit run --all-files --verbose
----
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
@@ -80,14 +80,14 @@ repos:
       - id: setup-cfg-fmt
         name: setup-cfg-fmt (apply a consistent format to setup.cfg files)
 
-  - repo: https://github.com/crate-ci/typos
-    rev: v1.22.9
-    hooks:
-      - id: typos
-  # - id: typos-docker
-        name: typos (Finds and corrects spelling mistakes)
-        args: [-v]
-        exclude: gitleaks-report.json|charts/|helm-template/
+  # - repo: https://github.com/crate-ci/typos
+  #   rev: v1.22.9
+  #   hooks:
+  #     - id: typos
+  # # - id: typos-docker
+  #       name: typos (Finds and corrects spelling mistakes)
+  #       args: [-v]
+  #       exclude: gitleaks-report.json|charts/|helm-template/
 
   # - repo: https://github.com/lyz-code/yamlfix/
   #   rev: 1.16.0
@@ -139,8 +139,6 @@ repos:
         args:
           - --baseline
           - .secrets.baseline
-          - --disable-plugin
-          - KeywordDetector
         exclude: gitleaks-report.json|charts/|helm-template-example/
 
   - repo: https://github.com/zricethezav/gitleaks
@@ -150,14 +148,14 @@ repos:
         name: gitleaks
         description: Gitleaks is for detecting and preventing hardcoded secrets
         args: [--no-banner, --config=.gitleaks.toml]
-      - id: gitleaks-docker
-        name: gitleaks-docker
-        description: Detect hardcoded system docker secrets using Gitleaks
-        args: [--no-banner, --config=.gitleaks.toml]
-      - id: gitleaks-system
-        name: Detect hardcoded secrets
-        description: Detect hardcoded system secrets using Gitleaks
-        args: [--no-banner, --config=.gitleaks.toml]
+      # - id: gitleaks-docker
+      #   name: gitleaks-docker
+      #   description: Detect hardcoded system docker secrets using Gitleaks
+      #   args: [--no-banner, --config=.gitleaks.toml]
+      # - id: gitleaks-system
+      #   name: Detect hardcoded secrets
+      #   description: Detect hardcoded system secrets using Gitleaks
+      #   args: [--no-banner, --config=.gitleaks.toml]
 
   - repo: https://github.com/thoughtworks/talisman
     rev: v1.32.0

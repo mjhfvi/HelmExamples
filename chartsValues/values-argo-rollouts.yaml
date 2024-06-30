@@ -1,3 +1,4 @@
+---
 # -- Install and upgrade CRDs
 installCRDs: true
 # -- Keep CRD's on helm uninstall
@@ -20,7 +21,7 @@ fullnameOverride:
 ## you can set api versions here
 apiVersionOverrides:
   # -- String to override apiVersion of ingresses rendered by this helm chart
-  ingress: "" # networking.k8s.io/v1beta1
+  ingress: ""   # networking.k8s.io/v1beta1
 
 # -- Override the Kubernetes version, which is used to evaluate certain manifests
 kubeVersionOverride: ""
@@ -189,9 +190,9 @@ controller:
     # -- Deploy a [Pod Disruption Budget] for the controller
     enabled: false
     # -- Minimum number / percentage of pods that should remain scheduled
-    minAvailable: # 1
+    minAvailable:   # 1
     # -- Maximum number / percentage of pods that may be made unavailable
-    maxUnavailable: # 0
+    maxUnavailable:   # 0
 
   # -- Additional volumes to add to the controller pod
   volumes: []
@@ -388,9 +389,9 @@ dashboard:
     # -- Deploy a [Pod Disruption Budget] for the dashboard
     enabled: false
     # -- Minimum number / percentage of pods that should remain scheduled
-    minAvailable: # 1
+    minAvailable:   # 1
     # -- Maximum number / percentage of pods that may be made unavailable
-    maxUnavailable: # 0
+    maxUnavailable:   # 0
 
   ## Ingress configuration.
   ## ref: https://kubernetes.io/docs/user-guide/ingress/

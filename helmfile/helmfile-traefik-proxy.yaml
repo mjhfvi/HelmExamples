@@ -42,7 +42,7 @@ releases:
     cleanupOnFail: true
     values:
       # - "charts/{{`{{ .Release.Name }}`}}/values.yaml"
-      - ../charts/{{`{{ .Release.Name }}`}}-proxy/values-{{`{{ .Release.Name }}`}}.yaml
+      - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
 
 # kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
 ## add traefik crd definition for kubernetes

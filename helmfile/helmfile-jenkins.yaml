@@ -43,9 +43,9 @@ releases:
   #   cleanupOnFail: true
     values:
       # - "charts/{{`{{ .Release.Name }}`}}/values.yaml"
-      - ../charts/{{`{{ .Release.Name }}`}}/values-{{`{{ .Release.Name }}`}}.yaml
+      - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
       - admin:
-          password: 1a2b3c4d
+          password: ""
       # - persistence:
       #     existingClaim: jenkins-persistent-volume-claim
       - controller:
