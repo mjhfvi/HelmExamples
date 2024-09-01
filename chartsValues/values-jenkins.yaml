@@ -476,6 +476,7 @@ controller:
     # - forensics-api
     # - git-parameter
     # - blueocean-git-pipeline
+    - generic-webhook-trigger
     # - git-client
     - git
     # - git-server
@@ -952,30 +953,28 @@ controller:
                         traits:
                         - "gitBranchDiscovery"
 
-    # Allows adding to the top-level security JCasC section. For legacy purposes, by default, the chart includes apiToken configurations
-    # -- Jenkins Config as Code security-section
-    security:
-      apiToken:
-        creationOfLegacyTokenEnabled: false
-        tokenGenerationOnCreationEnabled: false
-        usageStatisticsEnabled: true
+      # jcasc-custom-config-jobs: |
+      #     jobs:
+      #       - script: |
+      #           folder('testjobs')
+            # - script: |
+            #     pipelineJob('your-pipeline-job-name') {
+            #       definition {
+            #         cpsScm {
+            #           scm {
+            #             git {
+            #               remote {
+            #                 url('https://github.com/your-username/your-repo.git')
+            #               }
+            #               branches('*/main') # Or whatever branch you want
+            #             }
+            #           }
+            #           scriptPath('Jenkinsfile') # The path to the Jenkinsfile in the repo
+            #         }
+            #       }
+            #     }
 
-    # Ignored if securityRealm is defined in controller.JCasC.configScripts
-    # -- Jenkins Config as Code Security Realm-section
-    securityRealm: |-
-      local:
-        allowsSignup: false
-        enableCaptcha: false
-        users:
-        - id: "${chart-admin-username}"
-          name: "Jenkins Admin"
-          password: "${chart-admin-password}"
 
-    # Ignored if authorizationStrategy is defined in controller.JCasC.configScripts
-    # -- Jenkins Config as Code Authorization Strategy-section
-    authorizationStrategy: |-
-      loggedInUsersCanDoAnything:
-        allowAnonymousRead: false
   # -- Custom init-container specification in raw-yaml format
   customInitContainers: []
   # - name: custom-init

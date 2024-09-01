@@ -50,10 +50,20 @@ releases:
       #     existingClaim: jenkins-persistent-volume-claim
       - controller:
           image:
-            tag: 2.452.2-jdk17
+            tag: 2.472-jdk17
+          csrf:
+            defaultCrumbIssuer:
+              # -- Enable the default CSRF Crumb issuer
+              enabled: false
 ## kubectl -f service/jenkins-service.yaml apply
 ## kubectl -f service/jenkins-persistent-volume-nfs.yaml apply
 ## kubectl -f service/jenkins-persistent-volume-claim.yaml apply
 ## kubectl patch pv jenkins-storage-persistent-volume-nfs -p '{"spec":{"claimRef": null}}'
 ## kubectl -f jenkins-service.yaml apply
 ## kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode
+
+## kubectl -f service/jenkins-service-ingress.yaml apply
+
+
+# helmfile -f helmfile-jenkins.yaml apply
+# helmfile -f helmfile-jenkins.yaml destroy
