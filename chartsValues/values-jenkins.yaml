@@ -491,7 +491,7 @@ controller:
     # - htmlpublisher
     - http_request
     # - handy-uri-templates-2-api
-    - cloudbees-jenkins-advisor
+    # - cloudbees-jenkins-advisor
     - hidden-parameter
     # - instance-identity
     # - ionicons-api
@@ -785,66 +785,66 @@ controller:
                     scope: GLOBAL
                     secret: "{}"
 
-      jcasc-custom-config-tools: |
-          tool:
-            customTool:
-              installations:
-              - name: "Python"
-                properties:
-                - installSource:
-                    installers:
-                    - zip:
-                        subdir: "Python-3.12.4"
-                        url: "https://www.python.org/ftp/python/3.12.4/Python-3.12.4.tgz"
-              - name: "GitLeaks"
-                properties:
-                - installSource:
-                    installers:
-                    - zip:
-                        label: "linux"
-                        subdir: "gitleaks_8.18.3_linux_arm64"
-                        url: "https://github.com/gitleaks/gitleaks/releases/download/v8.18.3/gitleaks_8.18.3_linux_arm64.tar.gz"
-              - name: "Autopep8"
-                properties:
-                - installSource:
-                    installers:
-                    - command:
-                        command: "pip install --upgrade autopep8"
-                        label: "linux"
-                        toolHome: "/home/tzahi/.local/bin/"
-              - name: "Golangci-lint"
-                properties:
-                - installSource:
-                    installers:
-                    - zip:
-                        label: "linux"
-                        subdir: "golangci-lint-1.59.1-linux-amd64"
-                        url: "https://github.com/golangci/golangci-lint/releases/download/v1.59.1/golangci-lint-1.59.1-linux-amd64.tar.gz"
-              - name: "Yamllint"
-                properties:
-                - installSource:
-                    installers:
-                    - command:
-                        command: "pip install --upgrade yamllint"
-                        label: "linux"
-                        toolHome: "/home/tzahi/.local/bin/"
-              - name: "PreCommit"
-                properties:
-                - installSource:
-                    installers:
-                    - command:
-                        command: |
-                          pip install pre-commit
-                        label: "linux"
-                        toolHome: "/home/tzahi/.local/bin/"
-              - name: "Check-jsonschema"
-                properties:
-                - installSource:
-                    installers:
-                    - command:
-                        command: "pip install --upgrade check-jsonschema"
-                        label: "linux"
-                        toolHome: "/home/tzahi/.local/bin/"
+      # jcasc-custom-config-tools: |
+      #     tool:
+      #       customTool:
+      #         installations:
+      #         - name: "Python"
+      #           properties:
+      #           - installSource:
+      #               installers:
+      #               - zip:
+      #                   subdir: "Python-3.12.4"
+      #                   url: "https://www.python.org/ftp/python/3.12.4/Python-3.12.4.tgz"
+      #         - name: "GitLeaks"
+      #           properties:
+      #           - installSource:
+      #               installers:
+      #               - zip:
+      #                   label: "linux"
+      #                   subdir: "gitleaks_8.18.3_linux_arm64"
+      #                   url: "https://github.com/gitleaks/gitleaks/releases/download/v8.18.3/gitleaks_8.18.3_linux_arm64.tar.gz"
+      #         - name: "Autopep8"
+      #           properties:
+      #           - installSource:
+      #               installers:
+      #               - command:
+      #                   command: "pip install --upgrade autopep8"
+      #                   label: "linux"
+      #                   toolHome: "/home/tzahi/.local/bin/"
+      #         - name: "Golangci-lint"
+      #           properties:
+      #           - installSource:
+      #               installers:
+      #               - zip:
+      #                   label: "linux"
+      #                   subdir: "golangci-lint-1.59.1-linux-amd64"
+      #                   url: "https://github.com/golangci/golangci-lint/releases/download/v1.59.1/golangci-lint-1.59.1-linux-amd64.tar.gz"
+      #         - name: "Yamllint"
+      #           properties:
+      #           - installSource:
+      #               installers:
+      #               - command:
+      #                   command: "pip install --upgrade yamllint"
+      #                   label: "linux"
+      #                   toolHome: "/home/tzahi/.local/bin/"
+      #         - name: "PreCommit"
+      #           properties:
+      #           - installSource:
+      #               installers:
+      #               - command:
+      #                   command: |
+      #                     pip install pre-commit
+      #                   label: "linux"
+      #                   toolHome: "/home/tzahi/.local/bin/"
+      #         - name: "Check-jsonschema"
+      #           properties:
+      #           - installSource:
+      #               installers:
+      #               - command:
+      #                   command: "pip install --upgrade check-jsonschema"
+      #                   label: "linux"
+      #                   toolHome: "/home/tzahi/.local/bin/"
 
       jcasc-custom-config-appearance: |
           appearance:

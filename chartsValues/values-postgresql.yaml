@@ -138,13 +138,13 @@ auth:
   postgresPassword: ""
   ## @param auth.username Name for a custom user to create
   ##
-  username: "flaskappuser"
+  username: ""
   ## @param auth.password Password for the custom user to create. Ignored if `auth.existingSecret` is provided
   ##
   password: ""
   ## @param auth.database Name for a custom database to create
   ##
-  database: "flaskappdb"
+  database: ""
   ## @param auth.replicationUsername Name of the replication user
   ##
   replicationUsername: repl_user
@@ -160,7 +160,7 @@ auth:
   ##
   secretKeys:
     adminPasswordKey: postgres-password   # pragma: allowlist secret
-    userPasswordKey: password             # pragma: allowlist secret
+    userPasswordKey: password   # pragma: allowlist secret
     replicationPasswordKey: replication-password    # pragma: allowlist secret
   ## @param auth.usePasswordFiles Mount credentials as a files instead of using an environment variable
   ##
@@ -343,30 +343,7 @@ primary:
     ##      #!/bin/sh
     ##      echo "Do something."
     ##
-    scripts:
-      create_database.sql: |
-        \connect flaskappdb
-        CREATE SCHEMA IF NOT EXISTS flaskapp AUTHORIZATION flaskappuser;
-        ALTER DATABASE flaskappdb SET search_path TO flaskapp;
-
-        SET schema 'flaskapp';
-
-        CREATE TABLE IF NOT EXISTS people (
-            id SERIAL PRIMARY KEY,
-            firstname VARCHAR(100) NOT NULL,
-            lastname VARCHAR(100) NOT NULL,
-            age INT NOT NULL,
-            address VARCHAR(100) NOT NULL,
-            workplace VARCHAR(100) NOT NULL,
-            UNIQUE (id)
-        );
-
-        INSERT INTO people (firstname, lastname, age, address, workplace)
-        VALUES ('John', 'Doe', 30, '123 Main St, New York, NY 10030', 'Google'),
-              ('Jane', 'Doe', 28, '123 Main St, New York, NY 10030', 'Microsoft'),
-              ('Jack', 'Doe', 25, '123 Main St, New York, NY 10030', 'Amazon');
-
-
+    scripts: {}
     ## @param primary.initdb.scriptsConfigMap ConfigMap with scripts to be run at first boot
     ## NOTE: This will override `primary.initdb.scripts`
     ##
@@ -771,7 +748,7 @@ primary:
     volumeName: "data"
     ## @param primary.persistence.existingClaim Name of an existing PVC to use
     ##
-    existingClaim: ""     # "postgres-persistent-volume-claim"
+    existingClaim: ""
     ## @param primary.persistence.mountPath The path the volume will be mounted at
     ## Note: useful when using custom PostgreSQL images
     ##
@@ -1103,20 +1080,20 @@ readReplicas:
     allowExternalEgress: true
     ## @param readReplicas.networkPolicy.extraIngress [array] Add extra ingress rules to the NetworkPolicy
     ## e.g:
-    ## extraIngress:
-    ##   - ports:
-    ##       - port: 1234
-    ##     from:
-    ##       - podSelector:
-    ##           - matchLabels:
-    ##               - role: frontend
-    ##       - podSelector:
-    ##           - matchExpressions:
-    ##               - key: role
-    ##                 operator: In
-    ##                 values:
-    ##                   - frontend
-    extraIngress: []
+    extraIngress:
+      - ports:
+          - port: 5432
+        from:
+          - podSelector:
+              - matchLabels:
+                  - role: frontend
+          - podSelector:
+              - matchExpressions:
+                  - key: role
+                    operator: In
+                    values:
+                      - frontend
+    # extraIngress: []
     ## @param readReplicas.networkPolicy.extraEgress [array] Add extra ingress rules to the NetworkPolicy
     ## e.g:
     ## extraEgress:

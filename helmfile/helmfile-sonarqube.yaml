@@ -1,0 +1,77 @@
+---
+#  Source: https://github.com/prometheus-community/helm-charts
+
+#   What is a helmfile? Read here... https://github.com/helmfile/helmfile
+#   Examples: https://github.com/helmfile/helmfile/blob/main/examples/charts/argocd-helmfile-deployment/helmfile.yaml
+
+# Before deployment, export the required env vars
+# export HELM_SECRETS_DRIVER=vault
+
+# Commands to deploy:
+# helmfile deps  # < download dependencies
+# helmfile template  # < template stuff. You might have to be signed into vault
+# helmfile sync  # < deploy everything
+# helmfile apply  # < deploy diff only
+# helmfile destroy  # < deploy diff only
+filepath: helmfile.yaml
+helmBinary: helm
+# kustomizeBinary: kustomize
+helmDefaults:
+  # verify: false
+  # enableDNS: false
+  # waitForJobs: false
+  timeout: 60
+  # skipDeps: false
+  # reuseValues: false
+  # deleteWait: false
+  # deleteTimeout: 0
+repositories:
+  - name: sonarqube
+    url: https://SonarSource.github.io/helm-chart-sonarqube
+releases:
+  - name: sonarqube
+    installed: true
+    # namespace: '{{`{{ .Release.Name }}`}}'
+    createNamespace: true
+    chart: '{{`{{ .Release.Name }}`}}/{{`{{ .Release.Name }}`}}'
+    labels:
+      app.kubernetes.io/name: sonarqube
+  #   version: 7.0.0
+  #   missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
+  #   verify: true
+    cleanupOnFail: true
+    values:
+      # - charts/{{`{{ .Release.Name }}`}}/values.yaml
+      - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
+      - account:
+          adminPassword: admin    # pragma: allowlist secret
+          currentAdminPassword: adminadmin    # pragma: allowlist secret
+          # adminPasswordSecretName: admin-password-secret-name
+          # adminPasswordKey: password
+          # currentAdminPasswordSecretName: admin-password-secret-name
+          # currentAdminPasswordKey: currentPassword
+          # adminJobAnnotations: {}
+          # adminJobLabels: {}
+          # sonarWebContext: /
+          # curlContainerImage: curlimages/curl:8.2.1
+          # securityContext: {}
+          # resources:
+          #   limits:
+          #     cpu: 100m
+          #     memory: 128Mi
+          #   requests:
+          #     cpu: 100m
+          #     memory: 128Mi
+      - service:
+          type: LoadBalancer  #  ClusterIP
+      # - ingress:
+      #     enabled: true
+      #     # Used to create an Ingress record.
+      #     hosts:
+      #       - name: sonarqube.localhost
+      - plugins:
+          install:
+            - "https://github.com/dependency-check/dependency-check-sonar-plugin/releases/download/5.0.0/sonar-dependency-check-plugin-5.0.0.jar"
+            - "https://github.com/Inform-Software/sonar-groovy/releases/download/1.8/sonar-groovy-plugin-1.8.jar"
+            - "https://github.com/sbaudoin/sonar-yaml/releases/download/v1.9.1/sonar-yaml-plugin-1.9.1.jar"
+            - "https://github.com/sbaudoin/sonar-ansible/releases/download/v2.5.1/sonar-ansible-plugin-2.5.1.jar"

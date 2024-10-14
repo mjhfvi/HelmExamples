@@ -47,7 +47,7 @@ releases:
       - global:
           postgresql:
             auth:
-              username: flaskappuser
+              username: adminuser
               password: '12345'
               postgresPassword: '12345'
       - primary:

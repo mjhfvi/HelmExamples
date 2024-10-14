@@ -1,0 +1,45 @@
+---
+#  Source: https://github.com/prometheus-community/helm-charts
+
+#   What is a helmfile? Read here... https://github.com/helmfile/helmfile
+#   Examples: https://github.com/helmfile/helmfile/blob/main/examples/charts/argocd-helmfile-deployment/helmfile.yaml
+
+# Before deployment, export the required env vars
+# export HELM_SECRETS_DRIVER=vault
+
+# Commands to deploy:
+# helmfile deps  # < download dependencies
+# helmfile template  # < template stuff. You might have to be signed into vault
+# helmfile sync  # < deploy everything
+# helmfile apply  # < deploy diff only
+# helmfile destroy  # < deploy diff only
+filepath: helmfile.yaml
+helmBinary: helm
+# kustomizeBinary: kustomize
+helmDefaults:
+  # verify: false
+  # enableDNS: false
+  # waitForJobs: false
+  timeout: 60
+  # skipDeps: false
+  # reuseValues: false
+  # deleteWait: false
+  # deleteTimeout: 0
+repositories:
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+releases:
+  - name: grafana
+    installed: true
+    # namespace: '{{`{{ .Release.Name }}`}}'
+    createNamespace: true
+    chart: '{{`{{ .Release.Name }}`}}/{{`{{ .Release.Name }}`}}'
+    labels:
+      app.kubernetes.io/name: grafana
+  #   version: 7.0.0
+  #   missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
+  #   verify: true
+    cleanupOnFail: true
+    values:
+      # - charts/{{`{{ .Release.Name }}`}}/values.yaml
+      - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
