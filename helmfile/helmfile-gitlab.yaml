@@ -21,25 +21,112 @@ helmDefaults:
   # verify: false
   # enableDNS: false
   # waitForJobs: false
-  timeout: 60
+  timeout: 30
   # skipDeps: false
   # reuseValues: false
   # deleteWait: false
   # deleteTimeout: 0
 repositories:
   - name: gitlab
-    url: http://charts.gitlab.io/
+    url: https://charts.gitlab.io/
 releases:
   - name: gitlab
     namespace: default
     createNamespace: true
     chart: gitlab/gitlab
-    labels:
-      app.kubernetes.io/name: gitlab
+    # labels:
+    #   app.kubernetes.io/name: gitlab
     # version: 17.0.2
     # missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
     # verify: true
-    # timeout: 60
+    timeout: 30
     cleanupOnFail: true
-    # values:
+    values:
       # - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
+      - global:
+          edition: ce
+          hosts:
+            # domain: localhost
+            hostSuffix: staging
+            https: false
+            externalIP:
+            gitlab:
+              name: gitlab.localhost
+              https: false
+            registry:
+              name: registry.localhost
+              https: false
+
+      - prometheus:
+          install: false
+      - postgresql:
+          install: false
+      - metrics:
+          enabled: false
+      - smtp:
+          enabled: false
+
+      - certmanager-issuer:
+          email: mjhfvi@gmail.com
+
+      # - certmanager-issuer:
+      #     email: mjhfvi@gmail.com
+      # - global:
+      #     edition: ce
+      # ingress:
+      #   enabled: false
+      #   configureCertmanager: true
+      # prometheus:
+      #   install: false
+      # postgresql:
+      #   install: false
+      # metrics:
+      #   enabled: true
+      # smtp:
+      #   enabled: false
+
+  # ingress:
+  #   apiVersion: ""
+  #   configureCertmanager: true
+  #   useNewIngressForCerts: false
+  #   provider: nginx
+  #   # class:
+  #   annotations: {}
+  #   enabled: false
+
+  # ## https://docs.gitlab.com/charts/charts/globals#configure-postgresql-settings
+  # psql:
+  #   connectTimeout:
+  #   keepalives:
+  #   keepalivesIdle:
+  #   keepalivesInterval:
+  #   keepalivesCount:
+  #   tcpUserTimeout:
+  #   password: {}
+  #     # useSecret:
+  #     # secret:
+  #     # key:
+  #     # file:
+  #   # host: postgresql.hostedsomewhere.else
+  #   # port: 123
+  #   # username: gitlab
+  #   # database: gitlabhq_production
+  #   # applicationName:
+  #   # preparedStatements: false
+  #   # databaseTasks: true
+  #   main: {}
+  #     # host: postgresql.hostedsomewhere.else
+  #     # port: 123
+  #     # username: gitlab
+  #     # database: gitlabhq_production
+  #     # applicationName:
+  #     # preparedStatements: false
+  #     # databaseTasks: true
+  #   ci: {}
+  #     # host: postgresql.hostedsomewhere.else
+  #     # port: 123
+  #     # username: gitlab
+  #     # database: gitlabhq_production_ci
+  #     # applicationName:
+  #     # preparedStatements: false
+  #     # databaseTasks: false

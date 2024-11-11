@@ -53,3 +53,6 @@ releases:
       - primary:
           service:
             type: LoadBalancer  # "ClusterIP", "NodePort", "LoadBalancer", "ExternalName"
+
+
+# CREATE DATABASE mlflow WITH OWNER = adminuser ENCODING = 'UTF8' LOCALE_PROVIDER = 'libc' CONNECTION LIMIT = -1 IS_TEMPLATE = False;
