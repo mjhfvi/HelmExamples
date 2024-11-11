@@ -1,9 +1,0 @@
-ansible-compat<4  # https://github.com/ansible-community/molecule/issues/3903
-ansible-core
-ansible-lint
-Cython<3  # https://github.com/yaml/pyyaml/issues/601
-jmespath
-molecule<4.0.2
-molecule-docker
-openshift!=0.13.0
-yamllint
