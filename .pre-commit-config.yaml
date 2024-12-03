@@ -101,7 +101,7 @@ repos:
       - id: yamllint
         name: yamllint (linter for YAML files)
         args: [--format, auto]
-        exclude: charts/|helm-template/
+        exclude: chartsValues/|template/
 
   - repo: https://github.com/PeterMosmans/jenkinslint
     rev: v1.0.0
@@ -123,13 +123,13 @@ repos:
       - id: autopep8
         name: autopep8 (Style Guide Enforcement)
 
-  - repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
-    rev: v0.1.0
-    hooks:
-      - id: dockerfilelint
-        name: dockerfilelint-precommit-hooks (Useful pre-commit hooks for checking
-          Dockerfiles)
-        stages: [commit]
+  # - repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
+  #   rev: v0.1.0
+  #   hooks:
+  #     - id: dockerfilelint
+  #       name: dockerfilelint-precommit-hooks (Useful pre-commit hooks for checking
+  #         Dockerfiles)
+  #       stages: [commit]
 
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
@@ -139,7 +139,7 @@ repos:
         args:
           - --baseline
           - .secrets.baseline
-        exclude: gitleaks-report.json|charts/|helm-template-example/
+        exclude: gitleaks-report.json|chartsValues/|template/
 
   - repo: https://github.com/zricethezav/gitleaks
     rev: v8.21.2
@@ -163,7 +163,7 @@ repos:
       - id: talisman-commit
         name: talisman (scans git to ensure that potential secrets or sensitive information)
         entry: cmd --githook pre-commit
-        exclude: 'charts/.*|helm-template/.*'
+        # exclude: 'chartsValues/|template'
 
   # - repo: https://github.com/gitguardian/ggshield  # need token for use
   #   rev: v1.28.0

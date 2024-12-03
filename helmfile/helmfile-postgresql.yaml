@@ -31,7 +31,7 @@ helmDefaults:
 #     url: https://charts.bitnami.com/bitnami
 releases:
   - name: postgresql
-    namespace: postgresql
+    namespace: databases
     createNamespace: true
     chart: bitnami/postgresql
     # labels:
@@ -42,8 +42,7 @@ releases:
   #   timeout: 60
   #   cleanupOnFail: true
     values:
-      # - "charts/{{`{{ .Release.Name }}`}}/values.yaml"
-      - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
+      # - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
       - global:
           postgresql:
             auth:
@@ -51,8 +50,17 @@ releases:
               password: '12345'
               postgresPassword: '12345'
       - primary:
+          persistence:
+            enabled: true
+            existingClaim: "postgres-persistent-volume-nfs-claim"
+            mountPath: "/bitnami/postgresql/"
+            storageClass: "storage-nfs"
+            size: 10Gi
           service:
             type: LoadBalancer  # "ClusterIP", "NodePort", "LoadBalancer", "ExternalName"
+      - volumePermissions:
+          enabled: true
 
-
-# CREATE DATABASE mlflow WITH OWNER = adminuser ENCODING = 'UTF8' LOCALE_PROVIDER = 'libc' CONNECTION LIMIT = -1 IS_TEMPLATE = False;
+# export PGPASSWORD=
+# psql --host=192.168.50.50 --username=adminuser --dbname=postgres
+# CREATE DATABASE autogen WITH OWNER = adminuser ENCODING = 'UTF8' LOCALE_PROVIDER = 'libc' CONNECTION LIMIT = -1 IS_TEMPLATE = False;

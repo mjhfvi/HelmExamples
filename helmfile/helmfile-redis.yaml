@@ -31,7 +31,7 @@ repositories:
     url: https://charts.bitnami.com/bitnami
 releases:
   - name: redis
-    namespace: redis
+    namespace: databases
     createNamespace: true
     chart: bitnami/redis
     labels:
@@ -46,7 +46,17 @@ releases:
       - auth:
           enabled: false
       - master:
+          persistence:
+            enabled: true
+            existingClaim: "redis-persistent-volume-nfs-claim"
+            path: "/data"
+            storageClass: "storage-nfs"
+            size: 10Gi
           service:
             type: LoadBalancer
             ports:
               redis: 6379
+          disableCommands: []
+      - replica:
+          disableCommands: []
+          replicaCount: 0
