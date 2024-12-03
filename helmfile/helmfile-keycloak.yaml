@@ -21,34 +21,42 @@ helmDefaults:
   # verify: false
   # enableDNS: false
   # waitForJobs: false
-  timeout: 60
+  timeout: 30
   # skipDeps: false
   # reuseValues: false
   # deleteWait: false
   # deleteTimeout: 0
 repositories:
-  - name: atlassian-data-center
-    url: https://atlassian.github.io/data-center-helm-charts
+  - name: keycloak
+    url: https://charts.bitnami.com/bitnami
 releases:
-  - name: jira
+  - name: keycloak
     namespace: default
     createNamespace: true
-    chart: atlassian-data-center/jira
+    chart: bitnami/keycloak
     labels:
-      app.kubernetes.io/name: jira
+      app.kubernetes.io/name: keycloak
     # version: 17.0.2
     # missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
     # verify: true
-    # timeout: 60
+    timeout: 30
     cleanupOnFail: true
     values:
       # - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
-      - database:
-          driver: org.postgresql.Driver
-          type: postgres72
-          url: jdbc:postgresql://192.168.50.50:5432/jira
-          credentials:
-            usernameSecretKey:
-            passwordSecretKey:
+      - postgresql:
+          enabled: false
+      - externalDatabase:
+          host: 192.168.50.50
+          port: 5432
+          user: adminuser
+          password: '12345'
+          database: keycloak
+      - adminIngress:
+          enabled: false
+          hostname: keycloak.localhost
+      # - service:
+      #     type: LoadBalancer
+      #     ports:
+      #       http: 8089
 
-# kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/instance=jira" --output=name) 8080:8080
+# kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/component=keycloak" --output=name) 8080:8080

@@ -63,4 +63,4 @@ releases:
 
 # export PGPASSWORD=
 # psql --host=192.168.50.50 --username=adminuser --dbname=postgres
-# CREATE DATABASE autogen WITH OWNER = adminuser ENCODING = 'UTF8' LOCALE_PROVIDER = 'libc' CONNECTION LIMIT = -1 IS_TEMPLATE = False;
+# CREATE DATABASE db_name WITH OWNER = adminuser ENCODING = 'UTF8' LOCALE_PROVIDER = 'libc' CONNECTION LIMIT = -1 IS_TEMPLATE = False;
