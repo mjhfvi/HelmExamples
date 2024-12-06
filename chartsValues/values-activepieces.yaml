@@ -109,7 +109,7 @@ activepieces:
     username: activepieces
     ## @param activepieces.postgresql.password The password for the PostgreSQL server
     ##
-    password: activepieces    # pragma: allowlist secret
+    password: activepieces
     ## @param activepieces.postgresql.existingSecret The name of an existing `basic-auth` Secret to use the credentials from
     ##
     existingSecret: ""
@@ -137,7 +137,7 @@ activepieces:
     username: ""
     ## @param activepieces.redis.password The password for the Redis server
     ##
-    password: activepieces    # pragma: allowlist secret
+    password: activepieces
     ## @param activepieces.redis.existingSecret The name of an existing `basic-auth` Secret to use the credentials from
     ##
     existingSecret: ""

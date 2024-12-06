@@ -1,0 +1,66 @@
+---
+#  Source: /mnt/c/repository/HelmfileExamples/helmfile.yaml
+
+#   What is a helmfile? Read here...
+#   https://github.com/helmfile/helmfile
+#   Examples: https://github.com/helmfile/helmfile/blob/main/examples/charts/argocd-helmfile-deployment/helmfile.yaml
+
+# Before deployment, export the required env vars
+# export HELM_SECRETS_DRIVER=vault
+
+# Commands to deploy:
+# helmfile deps  # < download dependencies
+# helmfile template  # < template stuff. You might have to be signed into vault
+# helmfile sync  # < deploy everything
+# helmfile apply  # < deploy diff only
+# helmfile destroy  # < deploy diff only
+filepath: helmfile.yaml
+helmBinary: helm
+# kustomizeBinary: kustomize
+helmDefaults:
+  # verify: false
+  # enableDNS: false
+  # waitForJobs: false
+  timeout: 30
+  # skipDeps: false
+  # reuseValues: false
+  # deleteWait: false
+  # deleteTimeout: 0
+repositories:
+  - name: authentik
+    url: https://charts.goauthentik.io/
+releases:
+  - name: authentik
+    namespace: default
+    createNamespace: true
+    chart: goauthentik/authentik
+    labels:
+      app.kubernetes.io/name: authentik
+    # version: 17.0.2
+    # missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
+    # verify: true
+    timeout: 30
+    cleanupOnFail: true
+    values:
+      # - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
+
+
+# kubectl get pods --namespace=ingress-nginx
+
+  # annotations:
+  #   service.beta.kubernetes.io/aws-load-balancer-target-group-attributes: deregistration_delay.timeout_seconds=270
+  #   service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+  #   service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /healthz
+  #   service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "10254"
+  #   service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: http
+  #   service.beta.kubernetes.io/aws-load-balancer-healthcheck-success-codes: 200-299
+  #   service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+  #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+  #   service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+  #   service.beta.kubernetes.io/aws-load-balancer-type: nlb
+  #   service.beta.kubernetes.io/aws-load-balancer-manage-backend-security-group-rules: "true"
+  #   service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: "true"
+  #   service.beta.kubernetes.io/aws-load-balancer-security-groups: "sg-something1 sg-something2"
+  #   service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name: "somebucket"
+  #   service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix: "ingress-nginx"
+  #   service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval: "5"

@@ -1,3 +1,2 @@
-charts/nginx/values-nginx.yaml:private-key:800
-chartsValues/values-jenkins-bitnami.yaml:private-key:956
-chartsValues/values-vault.yaml:private-key:648
+helmfile/helmfile-jenkins.yaml:generic-api-key:48
+helmfile/helmfile-jenkins.yaml:generic-api-key:50

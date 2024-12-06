@@ -52,8 +52,8 @@ releases:
       #     passwords: 12345
       - persistence:
           enabled: true
-          existingClaim: "mongodb-persistent-volume-nfs-claim"
-          # mountPath: "/bitnami/postgresql"
+          existingClaim: "mongodb-persistent-volume-claim-nfs"
+          mountPath: "/bitnami/mongodb"
           storageClass: "storage-nfs"
           size: 10Gi
       - service:

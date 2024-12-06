@@ -42,28 +42,42 @@ releases:
   #   timeout: 60
   #   cleanupOnFail: true
     values:
-      # - "charts/{{`{{ .Release.Name }}`}}/values.yaml"
       - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
       - admin:
-          password: ""
-      # - persistence:
-      #     existingClaim: jenkins-persistent-volume-claim
+          username: admin
+          password: "2K7M9z0OguY8cy"    # pragma: allowlist secret
+      # - jenkinsUser: admin
+      # - jenkinsPassword: "2K7M9z0OguY8cy"   # pragma: allowlist secret
       - controller:
+          jenkinsUrl: "http://jenkins.localhost/"
           image:
-            tag: 2.477-jdk17
+            tag: 2.488-jdk17
           csrf:
-            defaultCrumbIssuer:
-              # -- Enable the default CSRF Crumb issuer
+            defaultCrumbIssuer:    # -- Enable the default CSRF Crumb issuer
               enabled: false
-## kubectl -f service/jenkins-service.yaml apply
-## kubectl -f service/jenkins-persistent-volume-nfs.yaml apply
-## kubectl -f service/jenkins-persistent-volume-claim.yaml apply
-## kubectl patch pv jenkins-storage-persistent-volume-nfs -p '{"spec":{"claimRef": null}}'
-## kubectl -f jenkins-service.yaml apply
-## kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode
+          # serviceType: ClusterIP    # LoadBalancer, ClusterIP, NodePort
+          # clusterIp:
+          # servicePort: 8080
+          # targetPort: 8080
+            labels:
+              app.kubernetes.io/name: jenkins
+              app.kubernetes.io/component: jenkins-ingress
+      - agentListenerService:
+          enabled: true
+          type: LoadBalancer    # LoadBalancer, ClusterIP, NodePort
+          ports:
+            agentListener: 50000
+      - persistence:
+          enabled: true
+          existingClaim: "jenkins-persistent-volume-claim-nfs"
 
-## kubectl -f service/jenkins-service-ingress.yaml apply
-
+## kubectl -f jenkins-service-ingress.yaml apply
+## kubectl -f jenkins-persistent-volume-nfs.yaml apply
+## kubectl -f jenkins-persistent-volume-claim.yaml apply
 
 # helmfile -f helmfile-jenkins.yaml apply
-# helmfile -f helmfile-jenkins.yaml destroy
+
+## kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode
+## kubectl patch pv jenkins-storage-persistent-volume-nfs -p '{"spec":{"claimRef": null}}'
+
+# kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/instance=jenkins" --output=name) 8080:8080

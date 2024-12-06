@@ -21,42 +21,38 @@ helmDefaults:
   # verify: false
   # enableDNS: false
   # waitForJobs: false
-  timeout: 60
+  timeout: 30
   # skipDeps: false
   # reuseValues: false
   # deleteWait: false
   # deleteTimeout: 0
 repositories:
-  - name: redis
+  - name: vault
     url: https://charts.bitnami.com/bitnami
 releases:
-  - name: redis
-    namespace: databases
+  - name: vault
+    namespace: default
     createNamespace: true
-    chart: bitnami/redis
+    chart: bitnami/vault
     labels:
-      app.kubernetes.io/name: redis
+      app.kubernetes.io/name: vault
     # version: 17.0.2
     # missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
     # verify: true
-    # timeout: 60
+    timeout: 30
     cleanupOnFail: true
     values:
       # - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
-      - auth:
-          enabled: false
-      - master:
-          persistence:
-            enabled: true
-            existingClaim: "redis-persistent-volume-claim-nfs"
-            path: "/data"
-            storageClass: "storage-nfs"
-            size: 10Gi
-          service:
-            type: LoadBalancer
-            ports:
-              redis: 6379
-          disableCommands: []
-      - replica:
-          disableCommands: []
-          replicaCount: 0
+      # - server:
+      #     service:
+      #       general:
+      #         type: LoadBalancer      # ClusterIP
+      #         ports:
+      #           http: 8200
+      #           internal: 8201
+      #     networkPolicy:
+      #         ingress:
+      #           enabled: true
+      #           hostname: vault.localhost
+
+# kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/component=server" --output=name) 8200:8200

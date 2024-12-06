@@ -21,42 +21,40 @@ helmDefaults:
   # verify: false
   # enableDNS: false
   # waitForJobs: false
-  timeout: 60
+  timeout: 30
   # skipDeps: false
   # reuseValues: false
   # deleteWait: false
   # deleteTimeout: 0
 repositories:
-  - name: redis
-    url: https://charts.bitnami.com/bitnami
+  - name: splunk
+    url: https://splunk.github.io/splunk-operator/
 releases:
-  - name: redis
-    namespace: databases
+  - name: splunk
+    namespace: default
     createNamespace: true
-    chart: bitnami/redis
+    chart: splunk/splunk-operator
     labels:
-      app.kubernetes.io/name: redis
+      app.kubernetes.io/name: splunk
     # version: 17.0.2
     # missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
     # verify: true
-    # timeout: 60
+    timeout: 30
     cleanupOnFail: true
     values:
-      # - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
-      - auth:
-          enabled: false
-      - master:
-          persistence:
-            enabled: true
-            existingClaim: "redis-persistent-volume-claim-nfs"
-            path: "/data"
-            storageClass: "storage-nfs"
-            size: 10Gi
-          service:
-            type: LoadBalancer
-            ports:
-              redis: 6379
-          disableCommands: []
-      - replica:
-          disableCommands: []
-          replicaCount: 0
+      - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
+      - image:
+          repository: docker.io/splunk/splunk:9.3.0
+      - service:
+          type: Loadbalancer
+          ports:
+            - name: http
+              port: 8083
+              protocol: TCP
+              targetPort: http
+      - splunkOperator:
+          volumes:
+            - name: app-staging
+              persistentVolumeClaim:
+                claimName: splunk-persistent-volume-nfs-claim
+# kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/component=splunk" --output=name) 8080:8080

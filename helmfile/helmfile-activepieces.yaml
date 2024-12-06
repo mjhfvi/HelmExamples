@@ -21,42 +21,48 @@ helmDefaults:
   # verify: false
   # enableDNS: false
   # waitForJobs: false
-  timeout: 60
+  timeout: 30
   # skipDeps: false
   # reuseValues: false
   # deleteWait: false
   # deleteTimeout: 0
 repositories:
-  - name: redis
-    url: https://charts.bitnami.com/bitnami
+  - name: activepieces
+    url: https://fmjstudios.github.io/helm/
 releases:
-  - name: redis
-    namespace: databases
+  - name: activepieces
+    namespace: default
     createNamespace: true
-    chart: bitnami/redis
+    chart: fmjstudios/activepieces
     labels:
-      app.kubernetes.io/name: redis
+      app.kubernetes.io/name: activepieces
     # version: 17.0.2
     # missingFileHandler: Warn  # set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.
     # verify: true
-    # timeout: 60
+    timeout: 30
     cleanupOnFail: true
     values:
       # - ../chartsValues/values-{{`{{ .Release.Name }}`}}.yaml
-      - auth:
-          enabled: false
-      - master:
-          persistence:
-            enabled: true
-            existingClaim: "redis-persistent-volume-claim-nfs"
-            path: "/data"
-            storageClass: "storage-nfs"
-            size: 10Gi
-          service:
-            type: LoadBalancer
-            ports:
-              redis: 6379
-          disableCommands: []
-      - replica:
-          disableCommands: []
-          replicaCount: 0
+      - image:
+          registry: docker.io
+          repository: activepieces/activepieces
+          tag: 0.37.5
+      - activepieces:
+          database: postgres
+          postgresql:
+            database: activepieces
+            host: 172.22.54.171
+            port: 5432
+            username: adminuser
+            password: "12345"
+          redis:
+            database: 3
+            host: 172.22.54.171
+            port: 6379
+          data:
+            # rootPath: /var/lib/activepieces
+            pvc:
+              # size: 5Gi
+              storageClass: storage-nfs
+              # reclaimPolicy: Retain
+              existingClaim: "activepieces-persistent-volume-claim-nfs"

@@ -52,7 +52,7 @@ releases:
       - primary:
           persistence:
             enabled: true
-            existingClaim: "postgres-persistent-volume-nfs-claim"
+            existingClaim: "postgresql-persistent-volume-claim-nfs"
             mountPath: "/bitnami/postgresql/"
             storageClass: "storage-nfs"
             size: 10Gi
