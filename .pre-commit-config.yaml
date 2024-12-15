@@ -80,14 +80,14 @@ repos:
       - id: setup-cfg-fmt
         name: setup-cfg-fmt (apply a consistent format to setup.cfg files)
 
-  # - repo: https://github.com/crate-ci/typos
-  #   rev: v1.22.9
-  #   hooks:
-  #     - id: typos
-  # # - id: typos-docker
-  #       name: typos (Finds and corrects spelling mistakes)
-  #       args: [-v]
-  #       exclude: gitleaks-report.json|charts/|helm-template/
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.22.9
+    hooks:
+      - id: typos
+  # - id: typos-docker
+        name: typos (Finds and corrects spelling mistakes)
+        args: [-v]
+        exclude: gitleaks-report.json|charts/|helm-template/
 
   # - repo: https://github.com/lyz-code/yamlfix/
   #   rev: 1.16.0

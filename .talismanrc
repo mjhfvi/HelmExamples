@@ -1,27 +1,5 @@
 ---
 fileignoreconfig:
-- filename: helmfile/helmfile-postgresql.yaml
-  checksum: b4bdf1005f19da3d700da7e29f0506522a26d8a4b9907862a9eb10d43f84e689
-- filename: chartsValues/values-ingress-nginx.yaml
-  checksum: 52b13d5fa545a5d6eecf6046e07823176b3d27a097efe0fd37b2eed9ec79df7f
-- filename: helmfile/helmfile-splunk.yaml
-  checksum: b495bb6ce196e81cfb001370e43783299c8cdb9d9bf016cba83fafc165e28296
-- filename: helmfile/helmfile-vault.yaml
-  checksum: 303d9c43c7bd79019d2fa0a094969c084110daa8eb3ba10aac65e16aac3dd4cc
-- filename: chartsValues/values-supabase.yaml
-  checksum: c4a94c5124c7c4fdc6720b28298486cd194daff8a2a069b628147ca0bedb9ae6
-- filename: chartsValues/values-activepieces.yaml
-  checksum: ce2de681a2a0ffd2a5f5a324f9a5e2cc8161062ecb40a278145fee3d677fe30b
-- filename: helmfile/helmfile-jenkins.yaml
-  checksum: bf8933d22d8975712e626f22434bb2b537d6fcc203590092923085008d7e32c2
-- filename: helmfile/helmfile-activepieces.yaml
-  checksum: 304f1d615c1c5aa0e7f8977a96bd771accc2110435d9ad3fc48348629f226b7e
-- filename: helmfile/helmfile-n8n.yaml
-  checksum: 44e952d98af59a16805fa1a2ef62855ca7a193d8cd0b9f123d8ce50fed175f03
-- filename: helmfile/helmfile-ingress-nginx.yaml
-  checksum: 31eef9631de4c82e6ae03b61c945dd8e137e0068bc785c916507a1ba0545f19b
-- filename: template/helmfile/helmfileExample.yaml
-  checksum: cdcd377fe6226d75d178dc224be5814f2c57bce140529065c5c6438a43ce282d
-- filename: chartsValues/values-milvus.yaml
-  checksum: 48b0440768fd94397b072b49f92e9f32c6db23d445c36b78fe20e692154c2a4b
+- filename: chartsValues/values.mindsdb.yaml
+  checksum: 4fdb0944613b12458275942df4c2efd34ee48e3045731562310c060be4224eaa
 version: ""
